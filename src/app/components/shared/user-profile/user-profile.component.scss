@@ -1,0 +1,23 @@
+.card{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 350px;
+    height: 50dvh;
+    max-height: 500px;
+    width:fit-content;
+    min-width: 250px;
+    box-shadow:  4px 4px 5px rgb(195, 194, 194);
+    border-radius: 10px;
+    padding:10px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.profile-photo{
+    height: 35dvh;
+    max-height: 350px;
+    width:auto;
+}
+img{
+    height: 100%;
+}
