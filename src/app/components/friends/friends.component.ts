@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FriendsComponent {
 
+  count: number[] = [1,2,3,4,5]
 }

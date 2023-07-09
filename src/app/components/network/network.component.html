@@ -1,2 +1,9 @@
-<p>network works!</p>
-<app-user-profile></app-user-profile>
+<div class="content">
+    <app-user-profile></app-user-profile>
+    <div class="requests">
+        <div *ngFor = "let i of count">
+            <app-friend-profile ></app-friend-profile>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-.home-content{
+.content{
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -17,7 +17,7 @@ text-area{
 }
 @media only screen and (max-width: 600px) {
 
-    .home-content{
+    .content{
         flex-direction: column;
         align-items: center;
     }

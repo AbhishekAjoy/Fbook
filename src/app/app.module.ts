@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +12,12 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { UserProfileComponent } from './components/shared/user-profile/user-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { NetworkComponent } from './components/network/network.component';
+import { FriendProfileComponent } from './components/shared/friend-profile/friend-profile.component';
 import { FriendsComponent } from './components/friends/friends.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { UsersComponent } from './components/users/users.component';
+
+
 
 @NgModule({
   declarations: [
@@ -22,11 +29,16 @@ import { FriendsComponent } from './components/friends/friends.component';
     UserProfileComponent,
     HomeComponent,
     NetworkComponent,
-    FriendsComponent
+    FriendProfileComponent,
+    FriendsComponent,
+    SettingComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
