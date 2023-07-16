@@ -22,3 +22,6 @@ img{
     height: 100%;
     max-width: 350px;
 }
+.profile-photo:hover{
+   filter: grayscale(100%);
+}

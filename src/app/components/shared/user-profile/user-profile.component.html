@@ -1,6 +1,7 @@
 <div class="card">
-    <div class="profile-photo">
-        <img src="../../../../assets/user.png" alt="Profile Photo">
+    <div class="profile-photo" (click) = "uploader.click()">
+        <img src="../../../../assets/user.png" alt="Profile Photo" id="profile-image">
+        <input hidden type="file" #uploader (change)="uploadFile($event)"/>
     </div>
     <div class="profile-details">
         <h3>UserName</h3><br/>

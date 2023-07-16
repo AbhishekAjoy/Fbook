@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,7 @@ import { FriendsComponent } from './components/friends/friends.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
+import { PostComponent } from './components/shared/post/post.component';
 
 
 
@@ -34,12 +35,14 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
     FriendsComponent,
     SettingComponent,
     UsersComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

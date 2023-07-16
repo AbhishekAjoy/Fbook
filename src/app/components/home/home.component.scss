@@ -12,6 +12,25 @@
     border-radius: 10px;
     box-shadow:  4px 4px 5px rgb(195, 194, 194);
 }
+#attach{
+    width:20px;
+    filter: invert(100%);
+}
+.file-input {
+    display: none;
+  }
+.post-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.post-content{
+    margin-top: 20px;
+}
+#spinner{
+    width:30px;
+    height:30px;
+}
 text-area{
     resize: none; 
 }
@@ -27,3 +46,5 @@ text-area{
         width:83vw;
     }
   }
+
+  

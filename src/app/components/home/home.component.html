@@ -1,12 +1,56 @@
 <div class="content">
-    <app-user-profile></app-user-profile>
-    <form class = "card" action="">
+  <app-user-profile></app-user-profile>
+  <div class="card">
     <div class="mb-3">
-        <input type="text" class="form-control" id="post-title" placeholder="Post Title">
+      <textarea
+        class="form-control"
+        id="post-body"
+        rows="10"
+        maxlength = "350"
+        placeholder="Write a post..."
+        [(ngModel)]="postDesc"
+      ></textarea>
+    </div>
+    <div class="post-controls">
+      <input
+        type="file"
+        class="file-input"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        #fileUpload
+      />
+
+      <div class="file-upload">
+        <div *ngIf = "this.files.length > 0">
+          {{files[0].name | slice: 0:30}}
+          <span *ngIf="files[0].name.length > 30">...</span>
+        </div>
+        <button
+          class="btn btn-primary"
+          (click)="fileUpload.click()"
+        >
+          <img
+            src="../../../assets/attach-file.png"
+            alt="attach-img"
+            id="attach"
+          />
+        </button>
       </div>
-      <div class="mb-3">
-        <textarea class="form-control" id="post-body" rows="8" placeholder="Description"></textarea>
-      </div>
-      <button class = "btn btn-primary">Post</button>
-    </form>
+      <button class="btn btn-primary" type="submit" (click)="createPost()">
+        Post
+      </button>
+    </div>
+  </div>
 </div>
+<div class="content">
+  <div class="post-content" *ngIf = "this.posts$ | async;else loading">
+    <div *ngFor = "let post of this.posts$ | async">
+      <app-post [post] = "post.post" [userName] = "post.userName" [date]="post.createdDate??''"></app-post>
+    </div>
+  </div>
+  <ng-template #loading>
+    <img src="../../../assets/__Iphone-spinner-1.gif" id = "spinner" alt="Loading Spinner">
+    <span>Loading Posts...</span>
+  </ng-template>
+</div>
+

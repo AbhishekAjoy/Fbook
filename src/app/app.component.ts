@@ -14,9 +14,8 @@ export class AppComponent {
   router = inject(Router);
 
   logout(){
+    window.localStorage.clear();
     window.sessionStorage.clear();
-    this.userService.user$.next('');
-    this.userService.isAdmin$.next(false);
     this.router.navigateByUrl('/');
   }
 }
