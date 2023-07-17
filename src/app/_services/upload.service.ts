@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +11,10 @@ export class UploadService {
   private baseURL = environment.API_URL;
 
   uploadFile(formData:any){
-    return this.http.post<any>(this.baseURL + 'files/uploadfile', formData)
+    const HttpUploadOptions = {
+      headers: new HttpHeaders({ "Content-Type": "multipart/form-data"})
+    }
+    return this.http.post<any>(this.baseURL + 'files/uploadfile', formData);
   }
 
   getPhotoById(photoId: string){

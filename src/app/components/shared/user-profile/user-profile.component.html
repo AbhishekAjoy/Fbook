@@ -1,10 +1,17 @@
 <div class="card">
-    <div class="profile-photo" (click) = "uploader.click()">
+    <div class="profile-photo" (click)="fileUpload.click()">
         <img src="../../../../assets/user.png" alt="Profile Photo" id="profile-image">
-        <input hidden type="file" #uploader (change)="uploadFile($event)"/>
+        <input
+        type="file"
+        class="file-input"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        #fileUpload
+        hidden
+      />
     </div>
     <div class="profile-details">
-        <h3>UserName</h3><br/>
+        <h3>{{userName}}</h3><br/>
         24 Connections<br/>
         512 Posts
     </div>

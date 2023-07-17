@@ -28,7 +28,10 @@ export class UserService {
         next: (response) => {
           sessionStorage.setItem("name",response.firstName);
           sessionStorage.setItem("isAdmin",response.isAdmin.toString());
+          sessionStorage.setItem("userId", response._id);
           localStorage.setItem('auth-token', response.token);
+          localStorage.setItem('photoId', response.photoId);
+          localStorage.setItem('userName', response.firstName);
           this.router.navigateByUrl('/home');
         },
         error: (err) => console.error(err.error.message),
@@ -48,7 +51,7 @@ export class UserService {
   }
 
   updateUserPhotoId(updatedUser: Partial<User>){
-    return this.http.post(this.baseURL + 'users/updateduserphotoId', updatedUser)
+    return this.http.post(this.baseURL + 'users/updateuserphotoId', updatedUser)
   }
 
   updateUser(updatedUser:Partial<User>){

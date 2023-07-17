@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit{
       post:this.postDesc,
       userId:'abcd',
       userName: sessionStorage.getItem('name')??'',
-      userPhotoId: 'photoid',
+      userPhotoId: localStorage.getItem('photoId')??'',
       userImageId: this.files?'filePresent':'',
       isAdmin: JSON.parse(sessionStorage.getItem('isAdmin')??'false'),
       isActive: true,
