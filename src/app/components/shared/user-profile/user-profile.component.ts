@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit{
   userPhoto$ = new Observable<Blob>;
   private uploadService = inject(UploadService);
   private userService = inject(UserService);
-  userName = sessionStorage.getItem('userName');
+  userName = sessionStorage.getItem('name');
 
   onFileSelected(event:any) {
 

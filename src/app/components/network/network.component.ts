@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/_models/user.interface';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',
   styleUrls: ['./network.component.scss']
 })
-export class NetworkComponent {
+export class NetworkComponent implements OnInit{
+  ngOnInit(): void {
+    this.users$ = this.userService.getAllUsers();
+  }
 
-  count:number[] = [1,2,3,4,5];
+  userService = inject(UserService);
+  users$ = new Observable<User[]>;
 }

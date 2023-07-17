@@ -20,7 +20,7 @@ export class FriendsService {
   }
 
   getAllFriendRequest(){
-    return this.http.get<any[]>(this.baseURL + 'friends/');
+    return this.http.get<Friend[]>(this.baseURL + 'friends/');
   }
 
   getFriendByRequestById(id: string){

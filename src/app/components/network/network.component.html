@@ -1,9 +1,12 @@
 <div class="content">
     <app-user-profile></app-user-profile>
-    <div class="requests">
-        <div *ngFor = "let i of count">
-            <app-friend-profile ></app-friend-profile>
+    <div class="requests" *ngIf = "this.users$ | async as users;else loading">
+        <div *ngFor = "let user of users">
+            <app-friend-profile [name] = "user.firstName +' '+ user.lastName" [email] = "user.email" [id] = "user.id?user.id:''" [uphotoid] = "user.photoId??''"></app-friend-profile>
         </div>
     </div>
+    <ng-template #loading>
+        <img id = "spinner" src="../../../assets/__Iphone-spinner-1.gif" alt="loading Spinner">&nbsp;Loading Users;
+    </ng-template>
 </div>
 

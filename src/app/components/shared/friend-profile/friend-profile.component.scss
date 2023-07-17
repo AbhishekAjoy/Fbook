@@ -1,7 +1,7 @@
 .card{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-radius: 10px;
     box-shadow:  4px 4px 5px rgb(195, 194, 194);
@@ -10,6 +10,8 @@
     height:70px;
     margin-left:10px;
     margin-top:10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .user-detail{
@@ -20,10 +22,19 @@
 p{
     margin-top:10px;
 }
-#user-name{
+.user{
     margin-left:20px;
     font-size: 1.2em;
 }
 img{
     height:50px;
+}
+
+.user-ids{
+    display: flex;
+    flex-direction: column;
+
+}
+#email{
+    font-size: 0.7em;
 }

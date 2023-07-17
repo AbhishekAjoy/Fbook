@@ -16,7 +16,7 @@ export class UserService {
 
   registerUser(formData: User) {
     this.http.post<User>(this.baseURL + 'users/register', formData).subscribe({
-      next: (response) => console.log(response),
+      next: (res) => this.router.navigateByUrl('/login'),
       error: (err) => console.error(err),
     });
   }
