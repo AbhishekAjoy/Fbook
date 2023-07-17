@@ -1,8 +1,17 @@
 <div class="card">
-    <img src="../../../../assets/user.png" id = "user-photo" alt="user photo">
+    <img src="../../../../assets/user.png" class = "user-photo" alt="user photo">
     <div class="content">
         <p class = "emphasis">{{this.userName}}</p>
         <p id = "post">{{this.post}}</p>
         <p class = "emphasis">{{this.date | date: 'd/M/yy, h:mm a'}}</p>
+       
     </div>
 </div>
+
+<!--   <div class="post-content" *ngIf = "this.userPhoto$ | async;else loading">
+                {{this.userPhoto$}}
+            </div>
+            <ng-template #loading>
+                <img src="../../../assets/__Iphone-spinner-1.gif" id = "spinner" alt="Loading Spinner">
+                <span>Loading Images...</span>
+              </ng-template>-->

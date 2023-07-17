@@ -44,8 +44,8 @@
 </div>
 <div class="content">
   <div class="post-content" *ngIf = "this.posts$ | async;else loading">
-    <div *ngFor = "let post of this.posts$ | async">
-      <app-post [post] = "post.post" [userName] = "post.userName" [date]="post.createdDate??''"></app-post>
+    <div *ngFor = "let post of this.posts$ | async;let i = index">
+      <app-post [post] = "post.post" [userName] = "post.userName" [date]="post.createdDate??''" [uphotoid] = "post.userPhotoId" [index] = "i"></app-post>
     </div>
   </div>
   <ng-template #loading>

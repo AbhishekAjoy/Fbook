@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, DoCheck, NgZone, OnInit, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import {  Component, OnInit, inject } from '@angular/core';
+import {Observable, map} from 'rxjs';
 import { Post } from 'src/app/_models/post.interface';
 import { PostService } from 'src/app/_services/post.service';
+import { UploadService } from 'src/app/_services/upload.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,19 @@ import { PostService } from 'src/app/_services/post.service';
 export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
-    this.posts$ = this.postService.getAllPosts();
-    console.log(this.posts$);
+    let getPosts$ = this.postService.getAllPosts();
+    this.posts$ = getPosts$.pipe(map(x => x.sort((a, b) => {
+      return <any>new Date(b.createdDate??'') - <any>new Date(a.createdDate??'');
+    })));
+    
 
   }
   posts$ = new Observable<Post[]>;
+  userPhotos:string[] = [];
   postDesc: string = '';
   files:File[] = [];
-  constructor(public postService: PostService, private changeDetectorRef: ChangeDetectorRef){}
+  
+  constructor(public postService: PostService){}
   onFileSelected(event:any) {
 
     if(this.files.length  === 0){
@@ -35,7 +41,7 @@ export class HomeComponent implements OnInit{
       userId:'abcd',
       userName: sessionStorage.getItem('name')??'',
       userPhotoId: 'photoid',
-      userImageId: this.files[0].name,
+      userImageId: this.files?'filePresent':'',
       isAdmin: JSON.parse(sessionStorage.getItem('isAdmin')??'false'),
       isActive: true,
       profession: 'user'
