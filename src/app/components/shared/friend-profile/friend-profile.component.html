@@ -1,9 +1,12 @@
-<div class="card">
+<div class="card" *ngIf = "this.status !== 'Rejected Request'">
     <div class="user-detail">
-        <img ngSrc="../../../../assets/user.png" src="../../../../assets/user.png" alt="profile-photo" [id] = "this.id">
+        <img ngSrc="../../../../assets/user.png" src="../../../../assets/user.png" alt="profile-photo" [id] = "this.friendId">
         <div class="user-ids">
             <p class = "user">{{name | slice: 0:30}}<br/><span id = "email">{{email | slice: 0:30}}</span></p>
         </div>
     </div>
-    <button [id] = "'b' + this.id" *ngIf = "this.status !== 'You are friend'" class = "btn btn-primary" (click) = "RequestHandler()" [disabled] = "this.status === 'Request Pending'">{{this.status}}</button>
+    <div class="controls">
+        <button *ngIf = "this.status !== 'You are friend'" class = "btn btn-primary" (click) = "requestHandler()" [disabled] = "this.status === 'Request Pending'">{{this.status}}</button>&nbsp;
+    <button *ngIf = "this.status === 'Accept Request'" class = "btn btn-primary" (click) = "rejectHandler()">Reject</button>
+    </div>
 </div>

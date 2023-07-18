@@ -12,10 +12,12 @@ export class FriendsService {
   private baseURL = environment.API_URL;
 
   createRequest(request: Friend){
+    console.log(request);
     return this.http.post<Friend>(this.baseURL + 'friends/createrequest', request);
   }
 
   updateFriendRequestById(updatedRequest: Friend){
+    console.log(updatedRequest);
     return this.http.put(this.baseURL + 'friends/' + updatedRequest.id, updatedRequest);
   }
 

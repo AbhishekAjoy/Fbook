@@ -19,8 +19,8 @@
         <app-friend-profile
           [name]="user.firstName + ' ' + user.lastName"
           [email]="user.email"
-          [id]="user.id ? user.id : ''"
           [uphotoid]="user.photoId ?? ''"
+          [friendId]="user.id??''"
         ></app-friend-profile>
       </div>
     </div>

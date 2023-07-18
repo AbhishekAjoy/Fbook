@@ -17,7 +17,7 @@ export class FriendProfileComponent implements OnInit{
       this.userPhoto$.subscribe({
         next: (res) => {
           var imageUrl = urlCreator.createObjectURL(res);
-          let img = document.getElementById(this.id) as HTMLImageElement;
+          let img = document.getElementById(this.friendId) as HTMLImageElement;
           if(img){
             img.src = imageUrl;
           }
@@ -36,9 +36,10 @@ export class FriendProfileComponent implements OnInit{
   @Input() friendId = '';
   friendService = inject(FriendsService);
   uploadService = inject(UploadService);
+  currentUser = sessionStorage.getItem('userId');
   userPhoto$ = new Observable<Blob>;
 
-  RequestHandler(){
+  requestHandler(){
     let request:Friend = {"userId":"", "friendId":"","status":""};
     if(this.status === 'Accept Request'){
       request = {
@@ -49,20 +50,19 @@ export class FriendProfileComponent implements OnInit{
       }
       console.log(request);
       this.friendService.updateFriendRequestById(request).subscribe({
-        next: (res) => console.log(res),
+        next: (res) => alert('Request Accepted'),
         error: (err) => console.log(err.error.message)
       });
       this.status = 'You are friend';
     }
     else{
       request = {
-        "id": this.id,
         "userId": sessionStorage.getItem('userId')??'',
         "friendId": this.friendId,
         "status": 'Request Pending'
       }
       this.friendService.createRequest(request).subscribe({
-      next: (res) => console.log(res),
+      next: (res) => alert('Sent request'),
       error: (err) => console.log(err.error.message)
     });
     this.status = 'Request Pending';
@@ -70,11 +70,20 @@ export class FriendProfileComponent implements OnInit{
     
   }
 
-  getFriendDetails(){
-    this.friendService.getFriendByRequestById(this.id).subscribe({
-      next: (res) => console.log(res),
+  rejectHandler(){
+    let request:Friend = {"userId":"", "friendId":"","status":""};
+    request = {
+      "id": this.id,
+      "userId": sessionStorage.getItem('userId')??'',
+      "friendId": this.friendId,
+      "status": 'Rejected Request'
+    }
+    console.log(request);
+    this.friendService.updateFriendRequestById(request).subscribe({
+      next: (res) => alert('Request Rejected'),
       error: (err) => console.log(err.error.message)
     });
+    this.status = 'Send Request';
   }
 
 
