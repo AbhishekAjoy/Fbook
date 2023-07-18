@@ -14,10 +14,17 @@ form{
     padding-bottom: 50px;
     box-shadow:  4px 4px 5px rgb(195, 194, 194);
 }
-input, label,button{
+input[class="form-control"], label,button{
     width: 70dvw;
     min-width: 220px ;
 }
 a{
     margin-top: 12px;
+}
+.gender{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 70px;
 }

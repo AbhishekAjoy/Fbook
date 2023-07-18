@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Friend } from 'src/app/_models/friend.interface';
 import { ReqUserMapping } from 'src/app/_models/types.interface';
@@ -12,6 +12,7 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./friends.component.scss'],
 })
 export class FriendsComponent implements OnInit {
+
   ngOnInit(): void {
     this.requests$ = this.friendService.getAllFriendRequest().pipe(
       map((reqs) =>

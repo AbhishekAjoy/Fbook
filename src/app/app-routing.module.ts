@@ -9,6 +9,7 @@ import { NetworkComponent } from './components/network/network.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { UsersComponent } from './components/users/users.component';
+import { roleGuard } from './_guards/role.guard';
 
 
 const routes: Routes = [{
@@ -41,7 +42,7 @@ const routes: Routes = [{
 {
   path: 'user-list',
   component: UsersComponent,
-  canActivate: [authGuard]
+  canActivate: [authGuard,roleGuard]
 },
 {
   path: 'settings',

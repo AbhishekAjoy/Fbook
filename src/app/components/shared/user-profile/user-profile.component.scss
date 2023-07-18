@@ -14,14 +14,11 @@
     margin-left:10px;
 }
 .profile-photo{
-    height: 35dvh;
-    max-height: 350px;
+    height: 300px;
+    max-height: 300px;
     width:auto;
 }
-img{
-    height: 100%;
-    max-width: 350px;
-}
+
 .profile-photo:hover{
    filter: grayscale(100%);
 }

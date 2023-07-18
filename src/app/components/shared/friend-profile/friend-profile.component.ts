@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Observable, filter, map } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Friend } from 'src/app/_models/friend.interface';
 import { User } from 'src/app/_models/user.interface';
 import { FriendsService } from 'src/app/_services/friends.service';

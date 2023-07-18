@@ -35,7 +35,7 @@ export class UserService {
           localStorage.setItem('userName', response.firstName);
           this.router.navigateByUrl('/home');
         },
-        error: (err) => console.error(err.error.message),
+        error: (err) => alert(err.error.message),
       });
   }
 
