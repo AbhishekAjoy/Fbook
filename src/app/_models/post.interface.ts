@@ -3,7 +3,6 @@ export interface Post{
     userId: string;
     userName: string;
     userPhotoId: string;
-    userImageId?:string;
     isAdmin: boolean;
     isActive: boolean;
     profession: string;

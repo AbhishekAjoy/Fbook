@@ -15,8 +15,9 @@ export class PostService {
   private baseURL = environment.API_URL;
 
   createPost(postData: Post){
+    console.log(postData);
     this.http.post<Post>(this.baseURL + 'posts/createpost',postData).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => alert('Post Created!'),
       error: (err) => console.error(err.error.message)
     });
   }

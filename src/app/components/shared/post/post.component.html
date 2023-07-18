@@ -1,11 +1,11 @@
 <div class="card">
-    <img ngSrc="../../../../assets/user.png" width = "50" height="50" class = "user-photo" alt="user photo"
+    <img ngSrc="../../../../assets/user.png" width = "50" height="50" [id] = "this.uphotoid" alt="user photo"
     width="50" height="50">
     <div class="content">
         <p class = "emphasis">{{this.userName}}</p>
         <p id = "post">{{this.post}}</p>
+        <img *ngIf = "postImgId !== ''" alt="Post image" [id]= "this.postId" width ="200" height = "200">
         <p class = "emphasis">{{this.date | date: 'd/M/yy, h:mm a'}}</p>
-       
     </div>
 </div>
 

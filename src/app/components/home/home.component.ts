@@ -1,5 +1,5 @@
 import {  Component, OnInit, inject } from '@angular/core';
-import {Observable, map} from 'rxjs';
+import {Observable, finalize, map, take} from 'rxjs';
 import { Post } from 'src/app/_models/post.interface';
 import { PostService } from 'src/app/_services/post.service';
 import { UploadService } from 'src/app/_services/upload.service';
@@ -20,11 +20,14 @@ export class HomeComponent implements OnInit{
 
   }
   posts$ = new Observable<Post[]>;
+  uploadFile$ = new Observable<any>;
   userPhotos:string[] = [];
   postDesc: string = '';
   files:File[] = [];
-  
-  constructor(public postService: PostService){}
+  postImgId = '';
+  postService = inject(PostService);
+  uploadService = inject(UploadService);
+
   onFileSelected(event:any) {
 
     if(this.files.length  === 0){
@@ -34,20 +37,36 @@ export class HomeComponent implements OnInit{
       alert('No more files can be uploaded');
     }
   }
+  getUploadId(){
+      const formData = new FormData();
+      formData.append('picture', this.files[0]);
+      this.uploadFile$ = this.uploadService.uploadFile(formData);
+  }
+  createPostHandler(){
+    this.getUploadId();
+    this.uploadFile$.pipe(take(1),finalize(() => this.createPost())).subscribe({
+      next:(res) => this.postImgId = res.uploadId??''
+    })
+  }
   createPost(){
-    
-    let post: Post = {
-      post:this.postDesc,
-      userId:'abcd',
-      userName: sessionStorage.getItem('name')??'',
-      userPhotoId: localStorage.getItem('photoId')??'',
-      userImageId: this.files?'filePresent':'',
-      isAdmin: JSON.parse(sessionStorage.getItem('isAdmin')??'false'),
-      isActive: true,
-      profession: 'user'
-    };
+    if(this.postImgId !== ''){
 
-    this.postService.createPost(post);
+      let post: Post = {
+        post:this.postDesc,
+        userId: sessionStorage.getItem('userId')??'',
+        userName: sessionStorage.getItem('name')??'',
+        userPhotoId: localStorage.getItem('photoId')??'',
+        postImageId: this.postImgId,
+        isAdmin: JSON.parse(sessionStorage.getItem('isAdmin')??'false'),
+        isActive: true,
+        profession: 'user'
+      };
+  
+      this.postService.createPost(post);
+    }
+    else{
+      console.log('Post image id empty');
+    }
   }
 
 }

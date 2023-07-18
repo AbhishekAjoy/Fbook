@@ -36,7 +36,7 @@
           />
         </button>
       </div>
-      <button class="btn btn-primary" type="submit" (click)="createPost()">
+      <button class="btn btn-primary" type="submit" (click)="createPostHandler()">
         Post
       </button>
     </div>
@@ -45,7 +45,7 @@
 <div class="content">
   <div class="post-content" *ngIf = "this.posts$ | async;else loading">
     <div *ngFor = "let post of this.posts$ | async;let i = index">
-      <app-post [post] = "post.post" [userName] = "post.userName" [date]="post.createdDate??''" [uphotoid] = "post.userPhotoId" [index] = "i"></app-post>
+      <app-post [postId]="post.id??''" [post] = "post.post" [userName] = "post.userName" [date]="post.createdDate??''" [uphotoid] = "post.userPhotoId" [postImgId] = "post.postImageId??''"></app-post>
     </div>
   </div>
   <ng-template #loading>
