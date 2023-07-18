@@ -1,12 +1,35 @@
 <div class="content">
-    <app-user-profile></app-user-profile>
-    <div class="requests" *ngIf = "this.users$ | async as users;else loading">
-        <div *ngFor = "let user of users">
-            <app-friend-profile [name] = "user.firstName +' '+ user.lastName" [email] = "user.email" [id] = "user.id?user.id:''" [uphotoid] = "user.photoId??''"></app-friend-profile>
-        </div>
+  <app-user-profile></app-user-profile>
+  <div class="all-requests">
+
+    <div class="requests" *ngIf="this.requests$ | async;else loading">
+      <div *ngFor="let request of users">
+        <app-friend-profile
+          [id]="request.id"
+          [name]="request.name"
+          [email]="request.email"
+          [status]="request.status"
+          [uphotoid]="request.photoId"
+          [friendId]="request.friendId??''"
+        ></app-friend-profile>
+      </div>
+    </div>
+    <div class="requests" *ngIf ="this.users$ | async as allusers">
+      <div *ngFor="let user of allusers">
+        <app-friend-profile
+          [name]="user.firstName + ' ' + user.lastName"
+          [email]="user.email"
+          [id]="user.id ? user.id : ''"
+          [uphotoid]="user.photoId ?? ''"
+        ></app-friend-profile>
+      </div>
     </div>
     <ng-template #loading>
-        <img id = "spinner" src="../../../assets/__Iphone-spinner-1.gif" alt="loading Spinner">&nbsp;Loading Users;
+      <img
+        id="spinner"
+        src="../../../assets/__Iphone-spinner-1.gif"
+        alt="loading Spinner"
+      />&nbsp;Loading Users;
     </ng-template>
+  </div>
 </div>
-

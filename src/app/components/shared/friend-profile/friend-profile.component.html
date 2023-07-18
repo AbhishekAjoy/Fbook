@@ -1,9 +1,9 @@
 <div class="card">
     <div class="user-detail">
-        <img src="../../../../assets/user.png" alt="profile-photo" [id] = "this.id">
+        <img ngSrc="../../../../assets/user.png" src="../../../../assets/user.png" alt="profile-photo" [id] = "this.id">
         <div class="user-ids">
             <p class = "user">{{name | slice: 0:30}}<br/><span id = "email">{{email | slice: 0:30}}</span></p>
         </div>
     </div>
-    <button class = "btn btn-primary" (click) = "createRequest()" [disabled] = "this.status !== 'Send Request'">{{this.status}}</button>
+    <button [id] = "'b' + this.id" *ngIf = "this.status !== 'You are friend'" class = "btn btn-primary" (click) = "RequestHandler()" [disabled] = "this.status === 'Request Pending'">{{this.status}}</button>
 </div>

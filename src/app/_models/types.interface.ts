@@ -3,5 +3,7 @@ export type ReqUserMapping = {
     email: string,
     id: string,
     status: string,
-    photoId: string
+    photoId: string,
+    userId?:string,
+    friendId?:string
   }

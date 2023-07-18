@@ -22,7 +22,8 @@ export class FriendProfileComponent implements OnInit{
             img.src = imageUrl;
           }
           
-        }
+        },
+        error: (err) => console.log(err.error.message)
       })
     }
   }
@@ -32,25 +33,47 @@ export class FriendProfileComponent implements OnInit{
   @Input() id = 'content-loading';
   @Input() status = 'Send Request';
   @Input() uphotoid = '';
+  @Input() friendId = '';
   friendService = inject(FriendsService);
   uploadService = inject(UploadService);
   userPhoto$ = new Observable<Blob>;
 
-  createRequest(){
-    let request:Friend = {
-      "userId": sessionStorage.getItem('userId')??'',
-      "friendId": this.id,
-      "status": this.status === 'Send Request'? 'Request Pending':''
+  RequestHandler(){
+    let request:Friend = {"userId":"", "friendId":"","status":""};
+    if(this.status === 'Accept Request'){
+      request = {
+        "id": this.id,
+        "userId": sessionStorage.getItem('userId')??'',
+        "friendId": this.friendId,
+        "status": 'You are friend'
+      }
+      console.log(request);
+      this.friendService.updateFriendRequestById(request).subscribe({
+        next: (res) => console.log(res),
+        error: (err) => console.log(err.error.message)
+      });
+      this.status = 'You are friend';
     }
+    else{
+      request = {
+        "id": this.id,
+        "userId": sessionStorage.getItem('userId')??'',
+        "friendId": this.friendId,
+        "status": 'Request Pending'
+      }
+      this.friendService.createRequest(request).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err.error.message)
+    });
     this.status = 'Request Pending';
-    this.friendService.createRequest(request).subscribe({
-      next: (res) => console.log(res)
-    })
+    }
+    
   }
 
   getFriendDetails(){
     this.friendService.getFriendByRequestById(this.id).subscribe({
-      next: (res) => console.log(res)
+      next: (res) => console.log(res),
+      error: (err) => console.log(err.error.message)
     });
   }
 

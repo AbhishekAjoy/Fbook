@@ -16,7 +16,7 @@ export class FriendsService {
   }
 
   updateFriendRequestById(updatedRequest: Friend){
-    return this.http.put(this.baseURL + 'friends/' + updatedRequest.userId, updatedRequest);
+    return this.http.put(this.baseURL + 'friends/' + updatedRequest.id, updatedRequest);
   }
 
   getAllFriendRequest(){

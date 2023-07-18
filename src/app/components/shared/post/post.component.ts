@@ -20,7 +20,8 @@ export class PostComponent implements OnInit{
             img.src = imageUrl;
           }
           
-        }
+        },
+        error: (err) => console.log(err.error.message)
       })
     }
   }
