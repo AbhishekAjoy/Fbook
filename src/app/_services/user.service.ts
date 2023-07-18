@@ -26,7 +26,7 @@ export class UserService {
       .post<LoginResponse>(this.baseURL + 'users/authenticate', formData)
       .subscribe({
         next: (response) => {
-          sessionStorage.setItem("name",response.firstName);
+          sessionStorage.setItem("name",response.firstName + ' '+ response.lastName);
           sessionStorage.setItem("isAdmin",response.isAdmin.toString());
           sessionStorage.setItem("userId", response._id);
           localStorage.setItem('auth-token', response.token);

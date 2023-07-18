@@ -22,7 +22,7 @@ export class FriendsComponent implements OnInit {
               error: (err) => console.log(err.error.message)
             });
           }
-          if(req.friendId === this.currentUserId && req.userId !== this.currentUserId){
+          if(req.friendId === this.currentUserId && req.userId !== this.currentUserId && req.status !== 'Send Request'){
             this.userService.getUserById(req.userId).subscribe({
               next: (res) => this.users.push({"id": req.id??'', "name": res.firstName + ' '+res.lastName, "email": res.email,"status":req.status==='Request Pending'?'Accept Request': req.status, "photoId": res.photoId??'', "friendId":req.userId }),
               error: (err) => console.log(err.error.message)
