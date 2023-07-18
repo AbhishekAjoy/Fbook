@@ -48,7 +48,7 @@ export class UserService {
   }
 
   getUserByEmail(email:string){
-    return this.http.post(this.baseURL+ 'users/finduserbyemail', {email: email});
+    return this.http.post<User[]>(this.baseURL+ 'users/finduserbyemail', {email: email});
   }
 
   updateUserPhotoId(updatedUser: Partial<User>){

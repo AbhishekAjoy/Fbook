@@ -10,6 +10,7 @@ import { FriendsComponent } from './components/friends/friends.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { UsersComponent } from './components/users/users.component';
 import { roleGuard } from './_guards/role.guard';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [{
@@ -23,6 +24,10 @@ const routes: Routes = [{
 {
   path: 'forgot-password',
   component: ForgotPasswordComponent,
+},
+{
+  path: 'reset-password',
+  component: ResetPasswordComponent,
 },
 {
   path: 'home',
