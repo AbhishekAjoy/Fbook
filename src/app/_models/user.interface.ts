@@ -3,6 +3,7 @@ export interface User{
     photoId?:string;
     createdDate?:string;
     isAdmin?:boolean;
+    isActive?:boolean;
     firstName: string;
     lastName: string;
     email: string;

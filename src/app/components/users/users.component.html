@@ -1,8 +1,14 @@
 <div class="content">
-    <app-user-profile></app-user-profile>
-    <div class="requests">
-        <div *ngFor = "let i of count">
-            <app-friend-profile ></app-friend-profile>
-        </div>
+  <app-user-profile></app-user-profile>
+  <div class="requests" *ngIf="users$ | async as users">
+    <div *ngFor="let user of users">
+      <app-friend-profile
+        [name]="user.firstName + ' ' + user.lastName"
+        [email]="user.email"
+        [status]="user.isActive?'Block':'Unblock'"
+        [uphotoid]="user.photoId??''"
+        [friendId]="user.id??''"
+      ></app-friend-profile>
     </div>
+  </div>
 </div>

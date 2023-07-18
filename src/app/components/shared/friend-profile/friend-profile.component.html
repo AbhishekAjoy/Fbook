@@ -6,8 +6,11 @@
         </div>
     </div>
     <div class="controls">
-        <button *ngIf = "this.status !== 'You are friend'" class = "btn btn-primary" (click) = "requestHandler()" [disabled] = "this.status === 'Request Pending'">{{this.status}}</button>&nbsp;
+        <button *ngIf = "this.status === 'Request Pending'" class = "btn btn-primary" (click) = "requestHandler()" disabled>{{this.status}}</button>&nbsp;
+        <button *ngIf = "this.status === 'Accept Request'" class = "btn btn-primary" (click) = "requestHandler()">Accept</button>
         <button *ngIf = "this.status === 'Accept Request'" class = "btn btn-primary" (click) = "rejectHandler()">Reject</button>
         <button *ngIf = "this.status === 'You are friend'" class = "btn btn-primary" (click) = "rejectHandler()">Unfriend</button>
+        <button *ngIf = "this.status === 'Block'" class = "btn btn-primary" (click) = "rejectHandler()">Block</button>
+        <button *ngIf = "this.status === 'Unblock'" class = "btn btn-primary" (click) = "rejectHandler()">Unblock</button>
     </div>
 </div>
