@@ -42,7 +42,7 @@ export class PostService {
     return this.http.put<Post>(this.baseURL + 'posts/' + updatedPost.id,updatedPost);
   }
 
-  deletePost(deletedPost: Post){
-    return this.http.delete<Post>(this.baseURL + 'posts/'+ deletedPost.id);
+  deletePost(deletedPostId: string){
+    return this.http.delete<Post>(this.baseURL + 'posts/'+ deletedPostId);
   }
 }

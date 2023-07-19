@@ -1,5 +1,5 @@
 <div class="card">
-    <img ngSrc="../../../../assets/user.png" width = "50" height="50" [id] = "this.uphotoid" alt="user photo"
+    <img ngSrc="../../../../assets/user.png" width = "50" height="50" [id] = "this.uImgId" alt="user photo"
     width="50" height="50">
     <div class="content">
         <p class = "emphasis">{{this.userName}}</p>
@@ -7,6 +7,15 @@
         <img *ngIf = "postImgId !== ''" alt="Post image" [id]= "this.postId" width ="200" height = "200">
         <p class = "emphasis">{{this.date | date: 'd/M/yy, h:mm a'}}</p>
     </div>
+        <button *ngIf = "(this.currentUserId === this.userId)||this.isAdmin === 'true'" (click) = "deleteHandler()"class="btn btn-primary">
+            <img
+            ngSrc="../../../../assets/delete.png"
+            alt="attach-img"
+            class = "delete"
+            width="20"
+            height="20"
+          /></button>
+
 </div>
 
 <!--   <div class="post-content" *ngIf = "this.userPhoto$ | async;else loading">

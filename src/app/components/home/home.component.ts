@@ -12,12 +12,7 @@ import { UploadService } from 'src/app/_services/upload.service';
 export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
-    let getPosts$ = this.postService.getAllPosts();
-    this.posts$ = getPosts$.pipe(map(x => x.sort((a, b) => {
-      return <any>new Date(b.createdDate??'') - <any>new Date(a.createdDate??'');
-    })));
-    
-
+    this.getPosts();
   }
   posts$ = new Observable<Post[]>;
   uploadFile$ = new Observable<any>;
@@ -43,13 +38,17 @@ export class HomeComponent implements OnInit{
       this.uploadFile$ = this.uploadService.uploadFile(formData);
   }
   createPostHandler(){
-    this.getUploadId();
+    if(this.files.length > 0){
+      this.getUploadId();
     this.uploadFile$.pipe(take(1),finalize(() => this.createPost())).subscribe({
       next:(res) => this.postImgId = res.uploadId??''
     })
+    }
+    else{
+      this.createPost();
+    }
   }
   createPost(){
-    if(this.postImgId !== ''){
 
       let post: Post = {
         post:this.postDesc,
@@ -63,10 +62,13 @@ export class HomeComponent implements OnInit{
       };
   
       this.postService.createPost(post);
-    }
-    else{
-      console.log('Post image id empty');
-    }
+      this.getPosts();
+  }
+  getPosts(){
+    let getPosts$ = this.postService.getAllPosts();
+    this.posts$ = getPosts$.pipe(map(x => x.sort((a, b) => {
+      return <any>new Date(b.createdDate??'') - <any>new Date(a.createdDate??'');
+    })));
   }
 
 }

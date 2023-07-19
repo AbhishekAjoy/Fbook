@@ -21,8 +21,12 @@
 }
 .content{
     margin-left: 10px;
+    flex-grow: 1000;
 }
 #spinner{
     width:30px;
     height:30px;
+}
+.delete{
+    filter: invert(1);
 }
